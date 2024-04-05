@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7d3qtxs22mnp"]
+[gd_scene load_steps=17 format=3 uid="uid://b7d3qtxs22mnp"]
 
 [ext_resource type="Texture2D" uid="uid://bh2i2pbd72n30" path="res://Assets/Sprites/GroundBlock.png" id="1_ghs4y"]
 [ext_resource type="Texture2D" uid="uid://8as4lix1a8pr" path="res://Assets/Sprites/HardBlock.png" id="2_wl1ml"]
 [ext_resource type="Texture2D" uid="uid://dbhkvad8kmca" path="res://Assets/Sprites/UndergroundBlock.png" id="3_0frel"]
 [ext_resource type="Texture2D" uid="uid://dtkrgfs1x5qrr" path="res://Assets/Sprites/UndergroundBrick.png" id="4_k65bh"]
+[ext_resource type="Texture2D" uid="uid://cdp0d1a4cvakq" path="res://Assets/Sprites/PipeBottom.png" id="5_gvfnl"]
 [ext_resource type="PackedScene" uid="uid://bd5ycp4pw3of6" path="res://scenes/player.tscn" id="5_ppiqm"]
 [ext_resource type="PackedScene" uid="uid://hwomofilwin7" path="res://scenes/mushroom.tscn" id="6_56tnb"]
+[ext_resource type="Texture2D" uid="uid://b5sqfy41h20ks" path="res://Assets/Sprites/PipeTop.png" id="6_mp2lx"]
 [ext_resource type="PackedScene" uid="uid://cd5pg1bccfkvs" path="res://scenes/turtle.tscn" id="7_1wosj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nq8lc"]
@@ -36,29 +38,48 @@ texture = ExtResource("4_k65bh")
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dn1ka"]
+texture = ExtResource("5_gvfnl")
+0:0/size_in_atlas = Vector2i(2, 1)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bo8l"]
+texture = ExtResource("6_mp2lx")
+0:0/size_in_atlas = Vector2i(2, 1)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.9831, -7.99097, 14.4836, -7.99097, 14.4836, 8.24069, -14.9831, 8.24069)
+
 [sub_resource type="TileSet" id="TileSet_vtx6k"]
 physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_nq8lc")
 sources/1 = SubResource("TileSetAtlasSource_iwtgu")
 sources/2 = SubResource("TileSetAtlasSource_ykcen")
 sources/3 = SubResource("TileSetAtlasSource_ei3ih")
+sources/4 = SubResource("TileSetAtlasSource_dn1ka")
+sources/5 = SubResource("TileSetAtlasSource_6bo8l")
 
 [node name="main" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_vtx6k")
 format = 2
-layer_0/tile_data = PackedInt32Array(393202, 0, 0, 458738, 0, 0, 524274, 0, 0, 393203, 0, 0, 458739, 0, 0, 524275, 0, 0, 393204, 0, 0, 458740, 0, 0, 524276, 0, 0, 393205, 0, 0, 458741, 0, 0, 524277, 0, 0, 393206, 0, 0, 458742, 0, 0, 524278, 0, 0, 393207, 0, 0, 458743, 0, 0, 524279, 0, 0, 393208, 0, 0, 458744, 0, 0, 524280, 0, 0, 393209, 0, 0, 458745, 0, 0, 524281, 0, 0, 393210, 0, 0, 458746, 0, 0, 524282, 0, 0, 393211, 0, 0, 458747, 0, 0, 524283, 0, 0, 393212, 0, 0, 458748, 0, 0, 524284, 0, 0, 393213, 0, 0, 458749, 0, 0, 524285, 0, 0, 393214, 0, 0, 458750, 0, 0, 524286, 0, 0, 393215, 0, 0, 458751, 0, 0, 524287, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 327681, 0, 0, 393217, 0, 0, 458753, 0, 0, 327682, 0, 0, 393218, 0, 0, 458754, 0, 0, 327683, 0, 0, 393219, 0, 0, 458755, 0, 0, 327684, 0, 0, 393220, 0, 0, 458756, 0, 0, 327685, 0, 0, 393221, 0, 0, 458757, 0, 0, 327686, 0, 0, 393222, 0, 0, 458758, 0, 0, 327687, 0, 0, 393223, 0, 0, 458759, 0, 0, 327688, 0, 0, 393224, 0, 0, 458760, 0, 0, 327689, 0, 0, 393225, 0, 0, 458761, 0, 0, 327690, 0, 0, 393226, 0, 0, 458762, 0, 0, 327691, 0, 0, 393227, 0, 0, 458763, 0, 0, 327692, 0, 0, 393228, 0, 0, 458764, 0, 0, 327693, 0, 0, 393229, 0, 0, 458765, 0, 0)
+layer_0/tile_data = PackedInt32Array(393202, 0, 0, 458738, 0, 0, 524274, 0, 0, 393203, 0, 0, 458739, 0, 0, 524275, 0, 0, 393204, 0, 0, 458740, 0, 0, 524276, 0, 0, 393205, 0, 0, 458741, 0, 0, 524277, 0, 0, 393206, 0, 0, 458742, 0, 0, 524278, 0, 0, 393207, 0, 0, 458743, 0, 0, 524279, 0, 0, 393208, 0, 0, 458744, 0, 0, 524280, 0, 0, 393209, 0, 0, 458745, 0, 0, 524281, 0, 0, 393210, 0, 0, 458746, 0, 0, 524282, 0, 0, 393211, 0, 0, 458747, 0, 0, 524283, 0, 0, 393212, 0, 0, 458748, 0, 0, 524284, 0, 0, 393213, 0, 0, 458749, 0, 0, 524285, 0, 0, 393214, 0, 0, 458750, 0, 0, 524286, 0, 0, 393215, 0, 0, 458751, 0, 0, 524287, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 327681, 0, 0, 393217, 0, 0, 458753, 0, 0, 327682, 0, 0, 393218, 0, 0, 458754, 0, 0, 327683, 0, 0, 393219, 0, 0, 458755, 0, 0, 327684, 0, 0, 393220, 0, 0, 458756, 0, 0, 327685, 0, 0, 393221, 0, 0, 458757, 0, 0, 327686, 0, 0, 393222, 0, 0, 458758, 0, 0, 327687, 0, 0, 393223, 0, 0, 458759, 0, 0, 327688, 0, 0, 393224, 0, 0, 458760, 0, 0, 327689, 0, 0, 393225, 0, 0, 458761, 0, 0, 327690, 0, 0, 393226, 0, 0, 458762, 0, 0, 327691, 0, 0, 393227, 0, 0, 458763, 0, 0, 327692, 0, 0, 393228, 0, 0, 458764, 0, 0, 327693, 0, 0, 393229, 0, 0, 458765, 0, 0, 262156, 4, 0, 196620, 4, 0, 131084, 4, 0, 196610, 4, 0, 262146, 4, 0, 327673, 4, 0, 131074, 5, 0, 262137, 5, 0, -196596, 5, 0, -131060, 4, 0, -65524, 4, 0, 12, 4, 0, 65548, 4, 0, 327667, 4, 0, 262131, 4, 0, 196595, 4, 0, 131059, 4, 0, 65523, 4, 0, -13, 4, 0, -65549, 4, 0, -131085, 5, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.75, 2.75)
 
 [node name="player" parent="Camera2D" instance=ExtResource("5_ppiqm")]
-position = Vector2(-189, 47)
+position = Vector2(-177, 72)
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="mushroom" parent="Enemies" instance=ExtResource("6_56tnb")]
+position = Vector2(-35, 46)
 
 [node name="turtle" parent="Enemies" instance=ExtResource("7_1wosj")]
-position = Vector2(79, -4)
+position = Vector2(127, 43)

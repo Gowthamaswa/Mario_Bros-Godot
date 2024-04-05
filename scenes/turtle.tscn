@@ -40,7 +40,14 @@ autoplay = "walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("5_mgau3")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(1, 0)
+[node name="RayCast2DBottom" type="RayCast2D" parent="."]
 target_position = Vector2(0, 12)
+collision_mask = 18
+
+[node name="RayCast2DLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-9, 0)
+collision_mask = 18
+
+[node name="RayCast2DRight" type="RayCast2D" parent="."]
+target_position = Vector2(9, 0)
 collision_mask = 18
