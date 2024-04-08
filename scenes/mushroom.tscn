@@ -32,6 +32,7 @@ size = Vector2(16, 16)
 
 [node name="mushroom" type="Area2D"]
 collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_tt8c6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -53,3 +54,5 @@ collision_mask = 18
 [node name="RayCast2DRight" type="RayCast2D" parent="."]
 target_position = Vector2(9, 0)
 collision_mask = 18
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

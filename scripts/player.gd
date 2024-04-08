@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
+signal points_scored(points: int)
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 enum PlayerMode{
@@ -20,17 +22,18 @@ enum PlayerMode{
 
 @export_group("Locomotion")
 @export var run_speed_damping = 0.5
-@export var speed =  100
+@export var speed =  200
 @export var jump_velocity = -350
 @export_group("")
 
 @export_group("stomping enemies")
 @export var min_stomp_degree = 35
-@export var mmax_stomp_degree = 140
+@export var max_stomp_degree = 140
 @export var stomp_y_velocity = -150
 @export_group("")
 
- 	
+const POINTS_LABEL_SCENE = preload("res://scenes/points_label.tscn")
+
 var player_mode = PlayerMode.SMALL
 
 func _physics_process(delta):
@@ -56,25 +59,35 @@ func _physics_process(delta):
 	animated_sprite_2d.trigger_animation(velocity, direction, player_mode)
 		
 	move_and_slide()
-	
-	
 
-func _on_area_2d_area_entered(area):
-	if area is Enemy:
-		handle_enemy_collision(area)
+#func _on_area_2d_area_entered(area):
+	#if area is Enemy:
+		#handle_enemy_collision(area)
 
-func handle_enemy_collision(enemy: Enemy):
-	if Enemy == null:
-		return
+#func handle_enemy_collision(enemy: Enemy):
+	#if Enemy == null:
+		#return
+		#
+	#if is_instance_of(enemy, Turtle) and (enemy as Turtle).in_a_shell:
+		#(enemy as Turtle). on_stomp(global_position)
+		#spawn_points_label(enemy)
+	#
+	#else:	
+		#var angle_of_collision = rad_to_deg(position.angle_to_point(enemy.position))
+		#
+		#if angle_of_collision > min_stomp_degree && max_stomp_degree > angle_of_collision:
+			#enemy.die()
+			#on_enemy_stomped()
+			#spawn_points_label(enemy)
+			#
+		#else:
+			#die()
 		
-	var angle_of_collision = rad_to_deg(position.angle_to_point(enemy.position))
-	
-	if angle_of_collision > min_stomp_degree && mmax_stomp_degree >angle_of_collision:
-		enemy.die()
-		on_enemy_stomped()
-		
-	else:
-		die()
+func spawn_points_label(enemy):
+	var points_label = POINTS_LABEL_SCENE.instantiate()
+	points_label.position = enemy.position + Vector2(-20, -20)
+	get_tree().root.add_child(points_label)
+	points_scored.emit(100)
 		
 func on_enemy_stomped():
 	velocity.y = stomp_y_velocity
