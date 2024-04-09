@@ -30,6 +30,11 @@ enum PlayerMode{
 @export var stomp_y_velocity = -150
 @export_group("")
 
+@export_group("camera view")
+@export var camera_view: Camera2D
+@export var should_camera_view: bool = true 
+@export_group("")
+
  	
 var player_mode = PlayerMode.SMALL
 
@@ -57,7 +62,9 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
-	
+func _process(delta):
+	if global_position.x > camera_view.global_position.x && should_camera_view:
+		camera_view.global_position.x = global_position.x
 
 func _on_area_2d_area_entered(area):
 	if area is Enemy:
@@ -84,3 +91,9 @@ func die():
 	print("dead")
 	
 	
+
+
+
+
+
+
