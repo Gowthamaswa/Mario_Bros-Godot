@@ -16,7 +16,6 @@ func _process(delta):
 	if !ray_cast_2d_bottom.is_colliding():
 		position.y += delta * vertical_speed
 
-
 	if ray_cast_2d_left.is_colliding():
 		direction = 1
 	elif ray_cast_2d_right.is_colliding():
@@ -48,3 +47,6 @@ func die_from_hit():
 func _on_area_entered(area):
 	if area is Turtle and (area as Turtle).in_a_shell and (area as Turtle).horizontal_speed != 0:
 		die_from_hit()
+
+func _on_visible_on_screen_enabler_2d_screen_exited():
+	queue_free()
