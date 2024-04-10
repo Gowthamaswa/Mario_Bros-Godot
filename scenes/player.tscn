@@ -274,6 +274,12 @@ animations = [{
 [node name="player" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_an578")
+run_speed_damping = null
+speed = null
+jump_velocity = null
+min_stomp_degree = null
+max_stomp_degree = null
+stomp_y_velocity = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fxpdt")
@@ -282,7 +288,7 @@ autoplay = "small_pole"
 script = ExtResource("25_6oeus")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 4
+collision_mask = 20
 
 [node name="AreaCollisionShape" type="CollisionShape2D" parent="Area2D"]
 shape = ExtResource("2_prya6")

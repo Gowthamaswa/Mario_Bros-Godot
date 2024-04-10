@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7d3qtxs22mnp"]
+[gd_scene load_steps=18 format=3 uid="uid://b7d3qtxs22mnp"]
 
 [ext_resource type="Texture2D" uid="uid://bh2i2pbd72n30" path="res://Assets/Sprites/GroundBlock.png" id="1_ghs4y"]
 [ext_resource type="Texture2D" uid="uid://8as4lix1a8pr" path="res://Assets/Sprites/HardBlock.png" id="2_wl1ml"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://hwomofilwin7" path="res://scenes/mushroom.tscn" id="6_56tnb"]
 [ext_resource type="Texture2D" uid="uid://b5sqfy41h20ks" path="res://Assets/Sprites/PipeTop.png" id="6_mp2lx"]
 [ext_resource type="PackedScene" uid="uid://cd5pg1bccfkvs" path="res://scenes/turtle.tscn" id="7_1wosj"]
+[ext_resource type="PackedScene" uid="uid://b0a5v5gnvss2o" path="res://scenes/brick.tscn" id="10_xrhwq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nq8lc"]
 texture = ExtResource("1_ghs4y")
@@ -73,16 +74,20 @@ layer_0/tile_data = PackedInt32Array(393202, 0, 0, 458738, 0, 0, 524274, 0, 0, 3
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.75, 2.75)
 
-[node name="player" parent="Camera2D" instance=ExtResource("5_ppiqm")]
+[node name="Brick" parent="." instance=ExtResource("10_xrhwq")]
+position = Vector2(-110, 20)
+
+[node name="player" parent="." instance=ExtResource("5_ppiqm")]
 position = Vector2(-168, 47)
+collision_mask = 22
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="mushroom" parent="Enemies" instance=ExtResource("6_56tnb")]
-position = Vector2(-5, 43)
+position = Vector2(-61, 48)
 
 [node name="turtle" parent="Enemies" instance=ExtResource("7_1wosj")]
 position = Vector2(127, 43)
 
 [node name="turtle2" parent="Enemies" instance=ExtResource("7_1wosj")]
-position = Vector2(56, 41)
+position = Vector2(21, 44)
