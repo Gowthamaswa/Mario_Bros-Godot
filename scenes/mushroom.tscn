@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://hwomofilwin7"]
 
 [ext_resource type="Texture2D" uid="uid://dl0kuv8e1o6n3" path="res://Assets/Sprites/Goomba_Flat.png" id="1_mdbgm"]
-[ext_resource type="Script" path="res://scenes/mushroom.gd" id="1_tt8c6"]
+[ext_resource type="Script" path="res://scripts/mushroom.gd" id="1_tt8c6"]
 [ext_resource type="Texture2D" uid="uid://dhmodocnsu7ds" path="res://Assets/Sprites/Goomba_Walk1.png" id="2_ew5ic"]
 [ext_resource type="Texture2D" uid="uid://cxtty1fuwy5ab" path="res://Assets/Sprites/Goomba_Walk2.png" id="3_01skq"]
 
@@ -32,6 +32,7 @@ size = Vector2(16, 16)
 
 [node name="mushroom" type="Area2D"]
 collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_tt8c6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -53,3 +54,8 @@ collision_mask = 18
 [node name="RayCast2DRight" type="RayCast2D" parent="."]
 target_position = Vector2(9, 0)
 collision_mask = 18
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
