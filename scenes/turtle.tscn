@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cd5pg1bccfkvs"]
 
 [ext_resource type="Texture2D" uid="uid://d0n6srd2hrk0i" path="res://Assets/Sprites/Koopa_Shell.png" id="1_1e7lg"]
-[ext_resource type="Script" path="res://scenes/turtle.gd" id="1_cfrk3"]
+[ext_resource type="Script" path="res://scripts/turtle.gd" id="1_cfrk3"]
 [ext_resource type="Texture2D" uid="uid://rq2r08kewwlo" path="res://Assets/Sprites/Koopa_Walk1.png" id="2_kwwei"]
 [ext_resource type="Texture2D" uid="uid://b2q1ddi7o0ef" path="res://Assets/Sprites/Koopa_Walk2.png" id="3_s65l8"]
 [ext_resource type="Shape2D" uid="uid://c8luy1rneytee" path="res://Resources/CollisionShapes/turtle_full_collision_shape.tres" id="5_mgau3"]
