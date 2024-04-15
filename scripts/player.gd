@@ -71,6 +71,10 @@ func _physics_process(delta):
 func _on_area_2d_area_entered(area):
 	if area is Enemy:
 		handle_enemy_collision(area)
+	
+	if area is ShootingFlower:
+		handle_flower_collision()
+		area.queue_free()
 
 func handle_enemy_collision(enemy: Enemy):
 	if enemy == null && is_dead:
@@ -123,3 +127,14 @@ func handle_movement_collision(collision: KinematicCollision2D):
 		var collision_angle = rad_to_deg(collision.get_angle())
 		if roundf(collision_angle) == 180:
 			(collision.get_collider() as Block).bump(player_mode) 
+
+func handle_flower_collision():
+	set_physics_process(false)
+	var animation_name = "small_to_shooting" if player_mode == PlayerMode.SMALL else "big_to_shooting"
+	animated_sprite_2d.play(animation_name) 
+	set_collision_shapes(false)
+	
+func set_collision_shapes(is_small: bool):
+	pass
+	#var collision_shape = SMALL_MARIO_COLLISION_SHAPE if is_small else BIG_MARIO_COLLISION_SHAPE
+	
