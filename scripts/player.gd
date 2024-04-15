@@ -86,6 +86,9 @@ func _process(delta):
 func _on_area_2d_area_entered(area):
 	if area is Enemy:
 		handle_enemy_collision(area)
+		
+	if area is Shroom:
+		handle_shroom_collision(area)
 
 func handle_enemy_collision(enemy: Enemy):
 	if enemy == null && is_dead:
@@ -105,6 +108,14 @@ func handle_enemy_collision(enemy: Enemy):
 			
 		else:
 			die()
+			
+func handle_shroom_collision(area: Node2D):
+	if player_mode == PlayerMode.SMALL:
+		set_physics_process(false)
+		animated_sprite_2d.play("small_to_big")
+		
+	
+	
 		
 func spawn_points_label(enemy):
 	var points_label = POINTS_LABEL_SCENE.instantiate()

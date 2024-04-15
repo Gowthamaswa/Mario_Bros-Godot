@@ -399,7 +399,7 @@ layer_0/tile_data = PackedInt32Array(393202, 0, 0, 458738, 0, 0, 524274, 0, 0, 3
 [node name="Enemies" type="Node" parent="."]
 
 [node name="mushroom" parent="Enemies" instance=ExtResource("6_56tnb")]
-position = Vector2(-38, 10)
+position = Vector2(-54, -4)
 horizontal_speed = 0
 
 [node name="mushroom2" parent="Enemies" instance=ExtResource("6_56tnb")]
