@@ -15,7 +15,7 @@ class_name Enemy
 func _process(delta):
 	if !ray_cast_2d_bottom.is_colliding():
 		position.y += delta * vertical_speed
-
+    
 	if ray_cast_2d_left.is_colliding():
 		direction = 1
 	elif ray_cast_2d_right.is_colliding():

@@ -31,10 +31,12 @@ enum PlayerMode{
 @export var stomp_y_velocity = -150
 @export_group("")
 
+
 @export_group("camera_sync")
 @export var camera_sync: Camera2D
 @export var should_camera_sync: bool = true
 @export_group("")
+
 
 const POINTS_LABEL_SCENE = preload("res://scenes/points_label.tscn")
 
@@ -74,21 +76,28 @@ func _physics_process(delta):
 	
 	if collision != null:
 		handle_movement_collision(collision)
+
 	
 	move_and_slide()
+
 	
 	if global_position.x > camera_sync.global_position.x && should_camera_sync:
 		camera_sync.global_position.x = global_position.x
 	
-func _process(delta):
-	pass
 
 func _on_area_2d_area_entered(area):
 	if area is Enemy:
 		handle_enemy_collision(area)
+
 		
 	if area is Shroom:
 		handle_shroom_collision(area)
+
+	
+	if area is ShootingFlower:
+		handle_flower_collision()
+		area.queue_free()
+
 
 func handle_enemy_collision(enemy: Enemy):
 	if enemy == null && is_dead:
@@ -108,14 +117,14 @@ func handle_enemy_collision(enemy: Enemy):
 			
 		else:
 			die()
+
 			
 func handle_shroom_collision(area: Node2D):
 	if player_mode == PlayerMode.SMALL:
 		set_physics_process(false)
 		animated_sprite_2d.play("small_to_big")
 		
-	
-	
+
 		
 func spawn_points_label(enemy):
 	var points_label = POINTS_LABEL_SCENE.instantiate()
@@ -140,6 +149,27 @@ func die():
 		death_tween.tween_property(self, "position", + position + Vector2(0, -45), .5)
 		death_tween.chain().tween_property(self, "position", + position + Vector2(0, 250), 2)
 		death_tween.tween_callback(func (): get_tree().reload_current_scene())
+
+	
+	else:
+		print("Big to small")
+		
+func handle_movement_collision(collision: KinematicCollision2D):
+	if collision.get_collider() is Block:
+		var collision_angle = rad_to_deg(collision.get_angle())
+		if roundf(collision_angle) == 180:
+			(collision.get_collider() as Block).bump(player_mode) 
+
+func handle_flower_collision():
+	set_physics_process(false)
+	var animation_name = "small_to_shooting" if player_mode == PlayerMode.SMALL else "big_to_shooting"
+	animated_sprite_2d.play(animation_name) 
+	set_collision_shapes(false)
+	
+func set_collision_shapes(is_small: bool):
+	pass
+	#var collision_shape = SMALL_MARIO_COLLISION_SHAPE if is_small else BIG_MARIO_COLLISION_SHAPE
+
 	
 	else:
 		print("Big to small")
