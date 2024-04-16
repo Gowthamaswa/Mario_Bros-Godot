@@ -15,13 +15,13 @@ class_name Enemy
 func _process(delta):
 	if !ray_cast_2d_bottom.is_colliding():
 		position.y += delta * vertical_speed
-
-	#if ray_cast_2d_left.is_colliding():
-		#direction = 1
-	#elif ray_cast_2d_right.is_colliding():
-		#direction = -1
-	#animated_sprite_2d.flip_h = true if direction == 1 else false
-	#position.x += direction * delta * horizontal_speed
+    
+	if ray_cast_2d_left.is_colliding():
+		direction = 1
+	elif ray_cast_2d_right.is_colliding():
+		direction = -1
+	animated_sprite_2d.flip_h = true if direction == 1 else false
+	position.x += direction * delta * horizontal_speed
 
 func die():
 	horizontal_speed = 0

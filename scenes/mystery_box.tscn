@@ -17,6 +17,7 @@ animations = [{
 }, {
 "duration": 2.0,
 "texture": ExtResource("3_hx4uc")
+
 }],
 "loop": true,
 "name": &"default",
@@ -30,6 +31,22 @@ animations = [{
 "name": &"empty",
 "speed": 5.0
 }]
+
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1stx7"]
+size = Vector2(16, 16)
+
+[node name="MysteryBox" type="StaticBody2D"]
+z_index = 2
+script = ExtResource("1_h2art")
+bonus_type = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dj3jh")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1stx7")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr1yi"]
 size = Vector2(16, 16)
@@ -46,8 +63,11 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xr1yi")
 
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, -10)
 collision_mask = 4
+
 collide_with_areas = true
 collide_with_bodies = false
+
