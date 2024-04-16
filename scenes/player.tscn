@@ -272,21 +272,23 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D"]
-collision_mask = 6
+collision_mask = 22
 script = ExtResource("1_an578")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fxpdt")
-animation = &"small_pole"
+animation = &"small_to_shooting"
 script = ExtResource("25_6oeus")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 4
+collision_mask = 20
 
 [node name="AreaCollisionShape" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
 shape = ExtResource("2_prya6")
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = ExtResource("2_prya6")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

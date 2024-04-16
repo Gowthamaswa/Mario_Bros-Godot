@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvu6r4g61rjtu"]
+
+[ext_resource type="Texture2D" uid="uid://d2wjjqv82whrs" path="res://Assets/Sprites/Flag.png" id="1_vlc83"]
+[ext_resource type="Texture2D" uid="uid://ir6sodu1lnqy" path="res://Assets/Sprites/FlagPole.png" id="2_dsxdv"]
+
+[node name="Flag" type="Area2D"]
+position = Vector2(-1, 77)
+
+[node name="FlagSprite" type="Sprite2D" parent="."]
+position = Vector2(-9, -63)
+texture = ExtResource("1_vlc83")
+
+[node name="FlagPoleSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_dsxdv")
