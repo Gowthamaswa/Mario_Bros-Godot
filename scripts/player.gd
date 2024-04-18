@@ -17,7 +17,7 @@ enum PlayerMode{
 @onready var area_2d=$Area2D
 @onready var area_collision_shape = $Area2D/AreaCollisionShape
 @onready var body_collision_shape=$BodyCollisionShape
-
+@onready var shooting_point = $ShootingPoint
 
 @export_group("Locomotion")
 @export var run_speed_damping = 0.5
@@ -32,6 +32,10 @@ enum PlayerMode{
 @export_group("")
 
 const POINTS_LABEL_SCENE = preload("res://scenes/points_label.tscn")
+const SMALL_MARIO_COLLISION_SHAPE = preload("res://Resources/CollisionShapes/small_mario_collision_shape.tres")
+const BIG_MARIO_COLLISION_SHAPE = preload("res://Resources/CollisionShapes/big_mario_collision_shape_2d.tres")
+const FIREBALL_SCENE = preload("res://scenes/fire_ball.tscn") 
+
 
 var player_mode = PlayerMode.SMALL
 
@@ -58,7 +62,10 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * delta) 
 		
-	animated_sprite_2d.trigger_animation(velocity, direction, player_mode)
+	if  Input.is_action_just_pressed("shoot") && player_mode == PlayerMode.SHOOTING:
+		shoot()
+	else:	
+		animated_sprite_2d.trigger_animation(velocity, direction, player_mode)
 		
 	var collision = get_last_slide_collision()
 	
@@ -67,10 +74,24 @@ func _physics_process(delta):
 	
 	
 	move_and_slide()
+	
+func shoot():
+	animated_sprite_2d.play("shoot")
+	set_physics_process(false)
+	
+	var fireball = FIREBALL_SCENE.instantiate()
+	fireball.direction = sign(animated_sprite_2d.scale.x)
+	fireball.global_position = shooting_point.global_position
+	get_tree().root.add_child(fireball) 
+	
 
 func _on_area_2d_area_entered(area):
 	if area is Enemy:
 		handle_enemy_collision(area)
+		
+	if area is Shroom:
+		handle_shroom_collision(area)
+		area.queue_free()
 	
 	if area is ShootingFlower:
 		handle_flower_collision()
@@ -134,7 +155,16 @@ func handle_flower_collision():
 	animated_sprite_2d.play(animation_name) 
 	set_collision_shapes(false)
 	
+func handle_shroom_collision(area: Node2D):
+	if player_mode == PlayerMode.SMALL:
+		set_physics_process(false)
+		animated_sprite_2d.play("small_to_big")
+	
 func set_collision_shapes(is_small: bool):
-	pass
-	#var collision_shape = SMALL_MARIO_COLLISION_SHAPE if is_small else BIG_MARIO_COLLISION_SHAPE
+	var collision_shape = SMALL_MARIO_COLLISION_SHAPE if is_small else BIG_MARIO_COLLISION_SHAPE
+	
+	#set the collision shapes for area_collision_shape and body_collision_shape
+	area_collision_shape.set_deferred("shape", collision_shape)
+	body_collision_shape.set_deferred("shape", collision_shape)
+
 	
