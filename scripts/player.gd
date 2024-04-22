@@ -48,7 +48,6 @@ var player_mode = PlayerMode.SMALL
 var is_dead = false
 
 func _physics_process(delta):
-	
 	var camera_left_bound = camera_sync.global_position.x - camera_sync.get_viewport_rect().size.x / 2 / camera_sync.zoom.x
 	#apply gravity
 	if not is_on_floor():
@@ -85,8 +84,8 @@ func _physics_process(delta):
 	
 	move_and_slide()
   
-  if global_position.x > camera_sync.global_position.x && should_camera_sync:
-    camera_sync.global_position.x = global_position.x
+	if global_position.x > camera_sync.global_position.x && should_camera_sync:
+		camera_sync.global_position.x = global_position.x
 	
 
 func shoot():
@@ -98,13 +97,7 @@ func shoot():
 	fireball.global_position = shooting_point.global_position
 	get_tree().root.add_child(fireball) 
 	
-
-
 	
-func _process(delta):
-	pass
-
-
 func _on_area_2d_area_entered(area):
 	if area is Enemy:
 		handle_enemy_collision(area)
@@ -146,10 +139,7 @@ func handle_flower_collision():
 	set_physics_process(false)
 	var animation_name = "small_to_shooting" if player_mode == PlayerMode.SMALL else "big_to_shooting"
 	animated_sprite_2d.play(animation_name) 
-	set_collision_shapes(false)
-
-func set_collision_shapes(is_small: bool):
-	pass
+	set_collision_shape(false)
 
 func spawn_points_label(enemy):
 	var points_label = POINTS_LABEL_SCENE.instantiate()
@@ -180,7 +170,6 @@ func die():
 		
 func handle_movement_collision(collision: KinematicCollision2D):
 	if collision.get_collider() is Block:
-		print("block")
 		var collision_angle = rad_to_deg(collision.get_angle())
 		if roundf(collision_angle) == 180:
 			(collision.get_collider() as Block).bump(player_mode)
@@ -193,7 +182,7 @@ func set_collision_shape(is_small: bool):
 func big_to_small():
 	set_collision_layer_value(1, false)
 	set_physics_process(false)
-	var animation_name = "small_to_big" if player_mode == PlayerMode.BIG else "small_to_shooting"
+	var animation_name = "small_to_big" if player_mode == PlayerMode.BIG || player_mode == PlayerMode.SHOOTING else "small_to_shooting"
 	animated_sprite_2d.play(animation_name, 1.0, true)
 	set_collision_shape(true)
 

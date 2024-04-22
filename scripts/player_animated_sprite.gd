@@ -27,23 +27,22 @@ func trigger_animation(velocity: Vector2, direction: int, player_mode: Player.Pl
 			play("%s_run" % animation_prefix)
 		else:
 			play("%s_idle" % animation_prefix)
-
-
-
-
+			
 func _on_animation_finished():
 	if animation == "small_to_big":
 		reset_animation_properties()
-
 		match get_parent().player_mode:
 			Player.PlayerMode.BIG:
 				get_parent().player_mode = Player.PlayerMode.SMALL
 			Player.PlayerMode.SMALL:
 				get_parent().player_mode = Player.PlayerMode.BIG
+			Player.PlayerMode.SHOOTING:
+				get_parent().player_mode = Player.PlayerMode.SMALL
 	
 	if  animation == "small_to_shooting" || animation == "big_to_shooting":
-		reset_player_properties()
+		reset_animation_properties()
 		get_parent().player_mode = Player.PlayerMode.SHOOTING
+		
 		
 	if animation == "shoot":
 		get_parent().set_physics_process(true)
