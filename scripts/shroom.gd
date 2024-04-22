@@ -7,7 +7,6 @@ class_name Shroom
 @export var vertical_velocity_gain = .1
 @onready var shape_cast_2d = $ShapeCast2D
  
-
 var allow_horizontal_movement = false
 var vertical_speed = 0
 

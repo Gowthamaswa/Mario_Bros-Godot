@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bul6wodcsqfrw"]
+[gd_scene load_steps=8 format=3 uid="uid://bis3owe83clip"]
 
 [ext_resource type="Script" path="res://scripts/mystery_box.gd" id="1_i8vxo"]
 [ext_resource type="Texture2D" uid="uid://cv5q5jjpotegk" path="res://Assets/Sprites/MysteryBlock.png" id="1_r8dhk"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://n3wf4wh4jvb8" path="res://Assets/Sprites/MysterBox2.png" id="3_hx4uc"]
 [ext_resource type="Texture2D" uid="uid://dxstf3eeggcla" path="res://Assets/Sprites/EmptyBlock.png" id="4_jyi36"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_16o47"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dj3jh"]
 animations = [{
 "frames": [{
 "duration": 10.0,
@@ -31,24 +31,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr1yi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1stx7"]
 size = Vector2(16, 16)
 
 [node name="MysteryBox" type="StaticBody2D"]
 z_index = 2
 collision_layer = 16
 collision_mask = 13
+
 script = ExtResource("1_i8vxo")
+bonus_type = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_16o47")
+sprite_frames = SubResource("SpriteFrames_dj3jh")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xr1yi")
+shape = SubResource("RectangleShape2D_1stx7")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, -10)
 collision_mask = 4
-collide_with_areas = true
-collide_with_bodies = false

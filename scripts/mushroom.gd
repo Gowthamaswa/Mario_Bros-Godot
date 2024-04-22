@@ -7,5 +7,3 @@ func die():
 	
 	# to make disappear from game once player stomps the mushroom 
 	get_tree().create_timer(1.5).timeout.connect(queue_free)
-
-	

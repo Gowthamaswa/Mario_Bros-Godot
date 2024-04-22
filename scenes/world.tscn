@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciaqe156j52nj"]
+
+[ext_resource type="Texture2D" uid="uid://c4pc5vhx58v5i" path="res://Assets/Sprites/Super Mario Bros - World 1-1.png" id="1_qek13"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ne38u"]
+size = Vector2(1119, 33)
+
+[node name="World" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(20, 2)
+texture = ExtResource("1_qek13")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+position = Vector2(544.5, 224.5)
+shape = SubResource("RectangleShape2D_ne38u")
