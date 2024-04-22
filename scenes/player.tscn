@@ -237,7 +237,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_vwxh1")
 }],
-"loop": true,
+"loop": false,
 "name": &"small_to_big",
 "speed": 5.0
 }, {
@@ -277,7 +277,15 @@ script = ExtResource("1_an578")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fxpdt")
+<<<<<<< HEAD
 animation = &"small_pole"
+=======
+
+animation = &"shoot"
+animation = &"small_to_big"
+autoplay = "small_pole"
+
+>>>>>>> 0f8f4d4e1524003f44dd4bf6b5e383e014227126
 script = ExtResource("25_6oeus")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -290,8 +298,11 @@ shape = ExtResource("2_prya6")
 position = Vector2(0, -1)
 shape = ExtResource("2_prya6")
 
+
 [node name="ShootingPoint" type="Marker2D" parent="."]
 position = Vector2(7, -5)
-
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

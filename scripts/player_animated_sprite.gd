@@ -27,8 +27,8 @@ func trigger_animation(velocity: Vector2, direction: int, player_mode: Player.Pl
 			play("%s_run" % animation_prefix)
 		else:
 			play("%s_idle" % animation_prefix)
-			
 
+			
 func _on_animation_finished():
 	if animation == "small_to_big":
 		reset_player_properties()
@@ -38,6 +38,7 @@ func _on_animation_finished():
 			Player.PlayerMode.SMALL:
 				get_parent().player_mode = Player.PlayerMode.BIG
 	
+
 	if  animation == "small_to_shooting" || animation == "big_to_shooting":
 		reset_player_properties()
 		get_parent().player_mode = Player.PlayerMode.SHOOTING
@@ -50,3 +51,14 @@ func reset_player_properties():
 	get_parent().set_physics_process(true)
 	get_parent().set_collision_layer_value(1, true)
 	frame_count = 0
+
+func _on_frame_changed():
+	if animation == "small_to_big" || animation == "small_to_shooting":
+		var player_mode = get_parent().player_mode
+		frame_count += 1
+		
+		if frame_count % 2 == 1:
+			offset = Vector2(0, 0 if player_mode == Player.PlayerMode.BIG else -8)
+		else:
+			offset = Vector2(0, 8 if player_mode == Player.PlayerMode.BIG else 0)
+
