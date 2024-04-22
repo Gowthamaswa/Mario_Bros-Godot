@@ -85,8 +85,8 @@ func _physics_process(delta):
 	
 	move_and_slide()
   
-  if global_position.x > camera_sync.global_position.x && should_camera_sync:
-    camera_sync.global_position.x = global_position.x
+	if global_position.x > camera_sync.global_position.x && should_camera_sync:
+		camera_sync.global_position.x = global_position.x
 	
 
 func shoot():
@@ -137,7 +137,7 @@ func handle_enemy_collision(enemy: Enemy):
 			die()
 			
 func handle_shroom_collision(area: Node2D):
-	if player_mode == PlayerMode.SMALL:
+	if player_mode == PlayerMode.SMALL || player_mode == PlayerMode.SHOOTING:
 		set_physics_process(false)
 		animated_sprite_2d.play("small_to_big")
 		set_collision_shape(false)
@@ -146,10 +146,8 @@ func handle_flower_collision():
 	set_physics_process(false)
 	var animation_name = "small_to_shooting" if player_mode == PlayerMode.SMALL else "big_to_shooting"
 	animated_sprite_2d.play(animation_name) 
-	set_collision_shapes(false)
+	set_collision_shape(false)
 
-func set_collision_shapes(is_small: bool):
-	pass
 
 func spawn_points_label(enemy):
 	var points_label = POINTS_LABEL_SCENE.instantiate()
@@ -191,9 +189,13 @@ func set_collision_shape(is_small: bool):
 	body_collision_shape.set_deferred("shape", collision_shape)
 
 func big_to_small():
-	set_collision_layer_value(1, false)
-	set_physics_process(false)
-	var animation_name = "small_to_big" if player_mode == PlayerMode.BIG else "small_to_shooting"
-	animated_sprite_2d.play(animation_name, 1.0, true)
-	set_collision_shape(true)
+		set_collision_layer_value(1, false)
+		set_physics_process(false)
+		var animation_name = "small_to_big" if player_mode == PlayerMode.BIG || player_mode == PlayerMode.SHOOTING else "small_to_shooting"
+		animated_sprite_2d.play(animation_name, 1.0, true)
+		set_collision_shape(true)
+		
+		
+	
+	
 
