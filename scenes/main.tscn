@@ -471,27 +471,18 @@ position_smoothing_speed = 8.0
 position = Vector2(-55, 26)
 
 [node name="MysteryBox" parent="." instance=ExtResource("25_q7rff")]
-
 position = Vector2(-39, 26)
-collision_layer = 16
-collision_mask = 13
 
 [node name="MysteryBox3" parent="." instance=ExtResource("25_q7rff")]
 position = Vector2(-70, 26)
-collision_layer = 16
-collision_mask = 13
 bonus_type = 0
 
 [node name="MysteryBox2" parent="." instance=ExtResource("25_q7rff")]
 position = Vector2(-23, 26)
-collision_layer = 16
-collision_mask = 13
 bonus_type = 2
 
 [node name="MysteryBox4" parent="." instance=ExtResource("25_q7rff")]
 position = Vector2(-9, 26)
-collision_layer = 16
-collision_mask = 13
 bonus_type = 2
 
 [node name="LevelManager" type="Node" parent="." groups=["level_manager"]]

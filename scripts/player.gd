@@ -84,6 +84,9 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
+	if global_position.x > camera_sync.global_position.x && should_camera_sync:
+		camera_sync.global_position.x = global_position.x
+	
 
 func shoot():
 	animated_sprite_2d.play("shoot")
@@ -95,8 +98,7 @@ func shoot():
 	get_tree().root.add_child(fireball) 
 	
 
-	if global_position.x > camera_sync.global_position.x && should_camera_sync:
-		camera_sync.global_position.x = global_position.x
+
 	
 func _process(delta):
 	pass
