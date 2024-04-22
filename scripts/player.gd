@@ -17,7 +17,7 @@ enum PlayerMode{
 @onready var area_2d=$Area2D
 @onready var area_collision_shape = $Area2D/AreaCollisionShape
 @onready var body_collision_shape=$BodyCollisionShape
-
+@onready var shooting_point = $ShootingPoint
 
 @export_group("Locomotion")
 @export var run_speed_damping = 0.5
@@ -38,7 +38,9 @@ enum PlayerMode{
 
 const POINTS_LABEL_SCENE = preload("res://scenes/points_label.tscn")
 const SMALL_MARIO_COLLISION_SHAPE = preload("res://Resources/CollisionShapes/small_mario_collision_shape.tres")
+const FIREBALL_SCENE = preload("res://scenes/fire_ball.tscn") 
 const BIG_MARIO_COLLISION_SHAPE = preload("res://Resources/CollisionShapes/big_mario_collision_shape.tres")
+
 
 var player_mode = PlayerMode.SMALL
 
@@ -71,7 +73,10 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * delta) 
 		
-	animated_sprite_2d.trigger_animation(velocity, direction, player_mode)
+	if  Input.is_action_just_pressed("shoot") && player_mode == PlayerMode.SHOOTING:
+		shoot()
+	else:	
+		animated_sprite_2d.trigger_animation(velocity, direction, player_mode)
 		
 	var collision = get_last_slide_collision()
 	
@@ -79,12 +84,26 @@ func _physics_process(delta):
 		handle_movement_collision(collision)
 	
 	move_and_slide()
+  
+  if global_position.x > camera_sync.global_position.x && should_camera_sync:
+    camera_sync.global_position.x = global_position.x
 	
-	if global_position.x > camera_sync.global_position.x && should_camera_sync:
-		camera_sync.global_position.x = global_position.x
+
+func shoot():
+	animated_sprite_2d.play("shoot")
+	set_physics_process(false)
+	
+	var fireball = FIREBALL_SCENE.instantiate()
+	fireball.direction = sign(animated_sprite_2d.scale.x)
+	fireball.global_position = shooting_point.global_position
+	get_tree().root.add_child(fireball) 
+	
+
+
 	
 func _process(delta):
 	pass
+
 
 func _on_area_2d_area_entered(area):
 	if area is Enemy:
@@ -93,7 +112,7 @@ func _on_area_2d_area_entered(area):
 	if area is Shroom:
 		handle_shroom_collision(area)
 		area.queue_free()
-		
+
 	if area is ShootingFlower:
 		handle_flower_collision()
 		area.queue_free()
@@ -177,3 +196,4 @@ func big_to_small():
 	var animation_name = "small_to_big" if player_mode == PlayerMode.BIG else "small_to_shooting"
 	animated_sprite_2d.play(animation_name, 1.0, true)
 	set_collision_shape(true)
+

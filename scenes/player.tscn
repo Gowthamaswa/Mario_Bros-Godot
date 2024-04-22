@@ -116,7 +116,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_dp03f")
 }],
-"loop": true,
+"loop": false,
 "name": &"shoot",
 "speed": 10.0
 }, {
@@ -266,7 +266,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_7mjpu")
 }],
-"loop": true,
+"loop": false,
 "name": &"small_to_shooting",
 "speed": 5.0
 }]
@@ -277,8 +277,10 @@ script = ExtResource("1_an578")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fxpdt")
+
 animation = &"small_to_big"
 autoplay = "small_pole"
+
 script = ExtResource("25_6oeus")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -290,6 +292,11 @@ shape = ExtResource("2_prya6")
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = ExtResource("2_prya6")
+
+
+[node name="ShootingPoint" type="Marker2D" parent="."]
+position = Vector2(7, -5)
+
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]

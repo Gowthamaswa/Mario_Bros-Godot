@@ -7,6 +7,7 @@ class_name Shroom
 @export var vertical_velocity_gain = .1
 @onready var shape_cast_2d = $ShapeCast2D
 
+
 var  allow_horizotal_movement = false
 var vertical_speed = 0
 
@@ -25,3 +26,4 @@ func _process(delta):
 		
 	else:
 		vertical_speed = 0
+
