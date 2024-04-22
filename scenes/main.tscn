@@ -442,6 +442,10 @@ position = Vector2(1367, 55)
 [node name="turtle" parent="Enemies" instance=ExtResource("7_1wosj")]
 position = Vector2(230, 34)
 
+[node name="turtle4" parent="Enemies" instance=ExtResource("7_1wosj")]
+position = Vector2(95, 48)
+horizontal_speed = 0
+
 [node name="turtle2" parent="Enemies" instance=ExtResource("7_1wosj")]
 position = Vector2(1441, 49)
 
@@ -467,6 +471,7 @@ position_smoothing_speed = 8.0
 position = Vector2(-55, 26)
 
 [node name="MysteryBox" parent="." instance=ExtResource("25_q7rff")]
+
 position = Vector2(-39, 26)
 collision_layer = 16
 collision_mask = 13

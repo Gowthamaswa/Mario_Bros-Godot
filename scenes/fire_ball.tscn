@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcm0hyep6v64v"]
+
+[ext_resource type="Script" path="res://scripts/fire_ball.gd" id="1_pywrt"]
+[ext_resource type="Texture2D" uid="uid://c135f55fbxgm3" path="res://Assets/Sprites/fireball1.png" id="1_r4up0"]
+[ext_resource type="Texture2D" uid="uid://hiugutq3ty4p" path="res://Assets/Sprites/fireball2.png" id="2_bxqpa"]
+[ext_resource type="Texture2D" uid="uid://bdgbfwhb1nnqe" path="res://Assets/Sprites/fireball3.png" id="3_ru8n0"]
+[ext_resource type="Texture2D" uid="uid://dhyiy4t3j3xga" path="res://Assets/Sprites/fireball4.png" id="4_yah4q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ocdn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r4up0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bxqpa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ru8n0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yah4q")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkl30"]
+size = Vector2(8, 8)
+
+[node name="FireBall" type="Area2D"]
+collision_layer = 64
+collision_mask = 60
+script = ExtResource("1_pywrt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2ocdn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gkl30")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 4)
+collision_mask = 18
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
