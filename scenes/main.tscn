@@ -24,8 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://brrum5522waxt" path="res://Assets/Sprites/Cloud3.png" id="19_s7khe"]
 [ext_resource type="PackedScene" uid="uid://cvu6r4g61rjtu" path="res://scenes/flag.tscn" id="23_d548v"]
 [ext_resource type="PackedScene" uid="uid://b0a5v5gnvss2o" path="res://scenes/brick.tscn" id="24_j4axk"]
-[ext_resource type="PackedScene" uid="uid://bul6wodcsqfrw" path="res://scenes/mystery_box.tscn" id="25_q7rff"]
-[ext_resource type="Script" path="res://scripts/LevelManager.gd" id="26_audkg"]
+[ext_resource type="PackedScene" uid="uid://bis3owe83clip" path="res://scenes/mystery_box.tscn" id="25_q7rff"]
+[ext_resource type="Script" path="res://scripts/LevelManager.gd" id="26_h0nva"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nq8lc"]
 texture = ExtResource("1_ghs4y")
@@ -455,8 +455,11 @@ position = Vector2(2309, 4)
 [node name="Flag" parent="." instance=ExtResource("23_d548v")]
 position = Vector2(2823, -16)
 
-[node name="player" parent="." instance=ExtResource("5_ppiqm")]
+[node name="player" parent="." node_paths=PackedStringArray("camera_sync") instance=ExtResource("5_ppiqm")]
 position = Vector2(-177, 62)
+camera_sync = NodePath("../Camera2D")
+
+[node name="Area2D2" type="Area2D" parent="player"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -0.119999)
@@ -468,12 +471,29 @@ position_smoothing_speed = 8.0
 position = Vector2(-55, 26)
 
 [node name="MysteryBox" parent="." instance=ExtResource("25_q7rff")]
-position = Vector2(-38, 26)
-bonus_type = 1
+
+position = Vector2(-39, 26)
+collision_layer = 16
+collision_mask = 13
+
+[node name="MysteryBox3" parent="." instance=ExtResource("25_q7rff")]
+position = Vector2(-70, 26)
+collision_layer = 16
+collision_mask = 13
+bonus_type = 0
 
 [node name="MysteryBox2" parent="." instance=ExtResource("25_q7rff")]
-position = Vector2(-4, 33)
+position = Vector2(-23, 26)
+collision_layer = 16
+collision_mask = 13
+bonus_type = 2
+
+[node name="MysteryBox4" parent="." instance=ExtResource("25_q7rff")]
+position = Vector2(-9, 26)
+collision_layer = 16
+collision_mask = 13
+
 bonus_type = 2
 
 [node name="LevelManager" type="Node" parent="." groups=["level_manager"]]
-script = ExtResource("26_audkg")
+script = ExtResource("26_h0nva")

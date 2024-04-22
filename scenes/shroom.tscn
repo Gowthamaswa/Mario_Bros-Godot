@@ -1,25 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2r6w2p4yetf4"]
+[gd_scene load_steps=5 format=3 uid="uid://byr386hk16eqk"]
 
-[ext_resource type="Texture2D" uid="uid://80dij0rowpdx" path="res://Assets/Sprites/MagicMushroom.png" id="1_e6uo4"]
-[ext_resource type="Script" path="res://scripts/shroom.gd" id="1_eji4o"]
+[ext_resource type="Script" path="res://scripts/shroom.gd" id="1_8wtid"]
+[ext_resource type="Texture2D" uid="uid://80dij0rowpdx" path="res://Assets/Sprites/MagicMushroom.png" id="1_dc7vg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6vni"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucdyy"]
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_goi2x"]
-size = Vector2(16, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jn52"]
+size = Vector2(18, 18)
 
-[node name="Shroom" type="Area2D"]
+[node name="shroom" type="Area2D"]
 collision_layer = 32
-script = ExtResource("1_eji4o")
+script = ExtResource("1_8wtid")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_e6uo4")
+texture = ExtResource("1_dc7vg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_d6vni")
+shape = SubResource("RectangleShape2D_ucdyy")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
-shape = SubResource("RectangleShape2D_goi2x")
+shape = SubResource("RectangleShape2D_4jn52")
+
 target_position = Vector2(0, 0)
 collision_mask = 18
