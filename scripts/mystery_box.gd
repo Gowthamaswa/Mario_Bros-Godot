@@ -8,10 +8,6 @@ enum BonusType {
 	FLOWER
 }
 
-<<<<<<< HEAD
-=======
-const SROOM_SCENE = preload("res://scenes/shroom.tscn")
->>>>>>> 0f8f4d4e1524003f44dd4bf6b5e383e014227126
 const COIN_SCENE = preload("res://scenes/coin.tscn")
 const SHROOM_SCENE = preload("res://scenes/shroom.tscn")
 const SHOOTING_FLOWER_SCENE = preload("res://scenes/shooting_flower.tscn")
@@ -49,7 +45,7 @@ func make_empty():
 	animated_sprite_2d.play("empty")
 
 func spawn_shroom():
-	var shroom = SROOM_SCENE.instantiate()
+	var shroom = SHROOM_SCENE.instantiate()
 	shroom.global_position = global_position
 	get_tree().root.add_child(shroom)
 

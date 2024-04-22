@@ -38,7 +38,6 @@ size = Vector2(16, 16)
 z_index = 2
 collision_layer = 16
 collision_mask = 13
-
 script = ExtResource("1_i8vxo")
 bonus_type = 1
 
