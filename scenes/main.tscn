@@ -410,7 +410,7 @@ position = Vector2(339, 24)
 position = Vector2(531, 45)
 
 [node name="mushroom4" parent="Enemies" instance=ExtResource("6_56tnb")]
-position = Vector2(564, 47)
+position = Vector2(564, 46)
 
 [node name="mushroom5" parent="Enemies" instance=ExtResource("6_56tnb")]
 position = Vector2(1095, -76)
@@ -443,7 +443,7 @@ position = Vector2(1367, 55)
 position = Vector2(230, 34)
 
 [node name="turtle4" parent="Enemies" instance=ExtResource("7_1wosj")]
-position = Vector2(85, 37)
+position = Vector2(86, 36)
 horizontal_speed = 0
 
 [node name="turtle2" parent="Enemies" instance=ExtResource("7_1wosj")]
@@ -458,6 +458,8 @@ position = Vector2(2823, -16)
 [node name="player" parent="." node_paths=PackedStringArray("camera_sync") instance=ExtResource("5_ppiqm")]
 position = Vector2(-177, 62)
 camera_sync = NodePath("../Camera2D")
+
+[node name="Area2D2" type="Area2D" parent="player"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -0.119999)
