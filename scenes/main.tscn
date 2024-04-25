@@ -470,6 +470,9 @@ position_smoothing_speed = 8.0
 [node name="Brick" parent="." instance=ExtResource("24_j4axk")]
 position = Vector2(-55, 26)
 
+[node name="Brick2" parent="." instance=ExtResource("24_j4axk")]
+position = Vector2(-88, 26)
+
 [node name="MysteryBox" parent="." instance=ExtResource("25_q7rff")]
 position = Vector2(-39, 26)
 
